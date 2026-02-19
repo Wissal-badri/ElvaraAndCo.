@@ -114,7 +114,7 @@ const Home = () => {
                                 >
                                     <Link to={`/product/${product.id}`} className="featured-card-img-wrap">
                                         {product.image
-                                            ? <img src={product.image} alt={product.name} />
+                                            ? <img src={product.image.startsWith('http') ? product.image : `http://localhost:5000/uploads/${product.image}`} alt={product.name} />
                                             : <div className="featured-img-placeholder" />
                                         }
                                         <div className="featured-card-hover"><span>View Details</span></div>

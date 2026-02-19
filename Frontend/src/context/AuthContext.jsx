@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 const AuthContext = createContext();
@@ -8,6 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Restore session from localStorage on page reload
@@ -42,6 +44,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        navigate('/');
         localStorage.removeItem('token');
         localStorage.removeItem('role');
         localStorage.removeItem('username');

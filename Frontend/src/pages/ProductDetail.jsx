@@ -60,7 +60,7 @@ const ProductDetail = () => {
                         transition={{ duration: 0.6 }}
                     >
                         {product.image ? (
-                            <img src={product.image} alt={product.name} />
+                            <img src={product.image.startsWith('http') ? product.image : `http://localhost:5000/uploads/${product.image}`} alt={product.name} />
                         ) : (
                             <div className="img-placeholder-lg" />
                         )}
@@ -84,11 +84,11 @@ const ProductDetail = () => {
                         )}
 
                         {/* Size Selector */}
-                        {product.sizes && product.sizes.length > 0 && (
+                        {product.sizes && (Array.isArray(product.sizes) ? product.sizes : JSON.parse(product.sizes || '[]')).length > 0 && (
                             <div className="product-detail-sizes">
                                 <p>Select Size:</p>
                                 <div className="size-options">
-                                    {product.sizes.map(size => (
+                                    {(Array.isArray(product.sizes) ? product.sizes : JSON.parse(product.sizes || '[]')).map(size => (
                                         <button
                                             key={size}
                                             className={`size-btn ${selectedSize === size ? 'active' : ''}`}

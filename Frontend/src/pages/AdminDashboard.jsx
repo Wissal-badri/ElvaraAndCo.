@@ -179,7 +179,7 @@ const AdminDashboard = () => {
                         </button>
                     ))}
                 </nav>
-                <button className="sidebar-logout" onClick={() => { logout(); navigate('/'); }}>
+                <button className="sidebar-logout" onClick={() => logout()}>
                     <PiSignOutLight size={20} /> Logout
                 </button>
             </aside>
@@ -195,7 +195,7 @@ const AdminDashboard = () => {
                         { label: 'Total Products', value: stats.totalProducts, icon: <PiDressLight /> },
                         { label: 'Total Orders', value: stats.totalOrders, icon: <PiPackageLight /> },
                         { label: 'Pending Orders', value: stats.pendingOrders, icon: <IoDiamondOutline /> },
-                        { label: 'Total Revenue', value: `${stats.revenue.toFixed(2)} MAD`, icon: <PiCurrencyDollarLight /> },
+                        { label: 'Total Revenue', value: `${Number(stats.revenue).toFixed(2)} MAD`, icon: <PiCurrencyDollarLight /> },
                     ].map((s, i) => (
                         <motion.div
                             key={s.label}
@@ -247,7 +247,7 @@ const AdminDashboard = () => {
                                             <motion.tr key={p.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                                                 <td>
                                                     {p.image
-                                                        ? <img src={p.image} alt={p.name} className="table-img" />
+                                                        ? <img src={p.image.startsWith('http') ? p.image : `http://localhost:5000/uploads/${p.image}`} alt={p.name} className="table-img" />
                                                         : <div className="table-img-placeholder" />
                                                     }
                                                 </td>

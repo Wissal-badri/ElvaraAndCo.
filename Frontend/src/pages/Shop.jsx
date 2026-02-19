@@ -88,7 +88,7 @@ const Shop = () => {
                                 <Link to={`/product/${product.id}`} className="product-card-link">
                                     <div className="product-card-img">
                                         {product.image ? (
-                                            <img src={product.image} alt={product.name} />
+                                            <img src={product.image.startsWith('http') ? product.image : `http://localhost:5000/uploads/${product.image}`} alt={product.name} />
                                         ) : (
                                             <div className="product-img-placeholder" />
                                         )}

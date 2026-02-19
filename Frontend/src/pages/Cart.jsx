@@ -45,7 +45,7 @@ const Cart = () => {
                                 >
                                     <div className="cart-item-img">
                                         {item.image ? (
-                                            <img src={item.image} alt={item.name} />
+                                            <img src={item.image.startsWith('http') ? item.image : `http://localhost:5000/uploads/${item.image}`} alt={item.name} />
                                         ) : (
                                             <div className="img-placeholder" />
                                         )}
