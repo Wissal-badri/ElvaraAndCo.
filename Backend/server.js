@@ -22,7 +22,11 @@ app.use(cors({
     credentials: true,
 }));
 app.use(express.json({ limit: '10kb' }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files using absolute path
+app.use('/uploads', (req, res, next) => {
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+}, express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files using absolute path
 
 // Global Rate Limiting
 const limiter = rateLimit({

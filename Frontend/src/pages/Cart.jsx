@@ -1,6 +1,7 @@
 import { useCart } from '../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import ImagePlaceholder from '../components/ImagePlaceholder';
 import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Cart.css';
@@ -47,12 +48,12 @@ const Cart = () => {
                                         {item.image ? (
                                             <img src={item.image.startsWith('http') ? item.image : `http://localhost:5000/uploads/${item.image}`} alt={item.name} />
                                         ) : (
-                                            <div className="img-placeholder" />
+                                            <ImagePlaceholder size="sm" name={item.name} />
                                         )}
                                     </div>
                                     <div className="cart-item-info">
                                         <h3>{item.name}</h3>
-                                        <p style={{ fontSize: '0.85rem', color: '#888', marginBottom: '4px' }}>Size: {item.size || 'N/A'}</p>
+                                        <p style={{ fontSize: '0.82rem', color: 'var(--muted)', marginBottom: '4px', letterSpacing: '0.04em' }}>Size: {item.size || 'N/A'}</p>
                                         <p className="item-price">{Number(item.price).toFixed(2)} MAD</p>
                                     </div>
                                     <div className="cart-item-controls">

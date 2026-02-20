@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import ImagePlaceholder from '../components/ImagePlaceholder';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import './Shop.css';
@@ -83,14 +84,13 @@ const Shop = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.07 }}
-                                whileHover={{ y: -8 }}
                             >
                                 <Link to={`/product/${product.id}`} className="product-card-link">
                                     <div className="product-card-img">
                                         {product.image ? (
                                             <img src={product.image.startsWith('http') ? product.image : `http://localhost:5000/uploads/${product.image}`} alt={product.name} />
                                         ) : (
-                                            <div className="product-img-placeholder" />
+                                            <ImagePlaceholder name={product.name} />
                                         )}
                                         <div className="product-card-overlay">
                                             <span>View Details</span>
@@ -122,8 +122,8 @@ const Shop = () => {
                 )}
             </div>
 
-            <footer style={{ padding: '50px 0', borderTop: '1px solid var(--color-charcoal-grey)', textAlign: 'center' }}>
-                <p>&copy; 2026 ELVARA & CO. All Rights Reserved.</p>
+            <footer style={{ padding: '50px 0', borderTop: '1px solid var(--cream-dark)', textAlign: 'center', color: 'var(--muted)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+                <p>&copy; 2026 ELVARA &amp; CO. All Rights Reserved.</p>
             </footer>
         </div>
     );

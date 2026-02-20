@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import ImagePlaceholder from '../components/ImagePlaceholder';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import { motion } from 'framer-motion';
@@ -62,7 +63,7 @@ const ProductDetail = () => {
                         {product.image ? (
                             <img src={product.image.startsWith('http') ? product.image : `http://localhost:5000/uploads/${product.image}`} alt={product.name} />
                         ) : (
-                            <div className="img-placeholder-lg" />
+                            <ImagePlaceholder size="lg" name={product.name} />
                         )}
                     </motion.div>
 

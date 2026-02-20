@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
+import ImagePlaceholder from '../components/ImagePlaceholder';
+import Prism from '../components/Prism';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import './Home.css';
@@ -27,7 +29,7 @@ const Home = () => {
         <div className="home-page">
             <Navbar />
 
-            {/* ── Hero ── */}
+            {/* ── Hero (photo background) ── */}
             <section className="hero">
                 <div className="hero-overlay" />
                 <div className="container hero-content">
@@ -64,6 +66,7 @@ const Home = () => {
                         <Link to="/about" className="btn-secondary">Our Story</Link>
                     </motion.div>
                 </div>
+                <div className="hero-scroll">Scroll</div>
             </section>
 
             {/* ── Brand Statement ── */}
@@ -110,12 +113,11 @@ const Home = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.1 }}
-                                    whileHover={{ y: -8 }}
                                 >
                                     <Link to={`/product/${product.id}`} className="featured-card-img-wrap">
                                         {product.image
                                             ? <img src={product.image.startsWith('http') ? product.image : `http://localhost:5000/uploads/${product.image}`} alt={product.name} />
-                                            : <div className="featured-img-placeholder" />
+                                            : <ImagePlaceholder name={product.name} />
                                         }
                                         <div className="featured-card-hover"><span>View Details</span></div>
                                     </Link>
@@ -136,7 +138,7 @@ const Home = () => {
                         <div className="featured-placeholder-grid">
                             {[1, 2, 3].map(i => (
                                 <div key={i} className="featured-card">
-                                    <div className="featured-img-placeholder" />
+                                    <ImagePlaceholder />
                                     <div className="featured-card-body">
                                         <h3>Coming Soon</h3>
                                         <p className="featured-price">—</p>
@@ -173,16 +175,21 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* ── Footer ── */}
+            {/* ── Footer — capsule bar style ── */}
             <footer className="home-footer">
-                <div className="container footer-inner">
-                    <div className="footer-brand">ELVARA & CO.</div>
+                <div className="footer-ornament">
+                    <span>✦</span>
+                </div>
+                <div className="footer-brand-large">ELVARA &amp; CO.</div>
+                <div className="footer-capsule">
+                    <p className="footer-copy">
+                        &copy; 2026 <strong>ELVARA &amp; CO.</strong> &mdash; Timeless Elegance
+                    </p>
                     <div className="footer-links">
                         <Link to="/shop">Collections</Link>
                         <Link to="/about">About</Link>
                         <Link to="/cart">Cart</Link>
                     </div>
-                    <p className="footer-copy">&copy; 2026 ELVARA & CO. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>

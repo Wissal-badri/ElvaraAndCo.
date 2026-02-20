@@ -15,7 +15,10 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="container nav-container">
-                <Link to="/" className="nav-logo">ELVARA & CO.</Link>
+                <Link to="/" className="nav-logo">
+                    <span className="nav-logo-dot" />
+                    ELVARA &amp; CO.
+                </Link>
 
                 {/* Desktop Menu */}
                 <div className="nav-links desktop-menu">

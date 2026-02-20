@@ -1,52 +1,105 @@
+/* ───────────────────────────────────────────
+   LOGIN PAGE — Dark glass, matching pill navbar theme
+   ─────────────────────────────────────────── */
 .login-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(ellipse at center, #1a1a1a 0%, #0A0A0A 100%);
-    padding: 20px;
-}
-
-.login-card {
-    background: #111;
-    border: 1px solid var(--color-charcoal-grey);
-    padding: 60px 50px;
-    width: 100%;
-    max-width: 440px;
-    text-align: center;
     position: relative;
+    overflow: hidden;
+    padding: 20px;
+
+    /* Same dark base as the navbar pill */
+    /* Dark luxury background with subtle texture */
+    background: linear-gradient(rgba(12, 10, 8, 0.85), rgba(12, 10, 8, 0.95)),
+        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
 }
 
+/* Decorative large background text */
+.login-page::before {
+    content: 'ELVARA';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 20vw, 18rem);
+    color: rgba(184, 147, 90, 0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.3em;
+    z-index: 0;
+}
+
+/* ── Glass card — pill/frosted style ── */
+.login-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(20, 18, 14, 0.75);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(184, 147, 90, 0.22);
+    border-radius: 28px;
+    padding: 56px 48px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* Gold top accent line */
 .login-card::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-royal-gold), transparent);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 0 0 2px 2px;
 }
 
+/* ── Brand ── */
 .login-brand {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--color-royal-gold);
-    letter-spacing: 0.2em;
-    margin-bottom: 8px;
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.28em;
+    margin-bottom: 6px;
+    font-weight: 400;
 }
 
 .login-subtitle {
-    color: #888;
-    font-size: 0.85rem;
+    color: rgba(184, 147, 90, 0.5);
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.32em;
     margin-bottom: 40px;
+    font-family: var(--font-body);
+    font-weight: 400;
 }
 
+/* Divider */
+.login-card::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(184, 147, 90, 0.3);
+    margin: 0 auto 36px;
+}
+
+/* ── Form ── */
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     text-align: left;
 }
 
@@ -57,48 +110,80 @@
 }
 
 .form-group label {
-    font-size: 0.8rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #aaa;
-}
-
-.form-group input {
-    background: #1a1a1a;
-    border: 1px solid var(--color-charcoal-grey);
-    color: var(--color-ivory-white);
-    padding: 14px 16px;
+    letter-spacing: 0.22em;
+    color: rgba(184, 147, 90, 0.65);
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(184, 147, 90, 0.18);
+    color: var(--cream);
+    padding: 13px 16px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
     outline: none;
-    transition: border-color 0.3s;
+    border-radius: 12px;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+    width: 100%;
 }
 
-.form-group input:focus {
-    border-color: var(--color-royal-gold);
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: rgba(184, 147, 90, 0.55);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(184, 147, 90, 0.1);
 }
 
-.form-group input::placeholder {
-    color: #555;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(220, 210, 195, 0.3);
 }
 
+/* ── Error ── */
 .login-error {
-    color: #e05c5c;
-    font-size: 0.85rem;
+    color: #e8837a;
+    font-size: 0.8rem;
     text-align: center;
-    padding: 10px;
-    background: rgba(224, 92, 92, 0.1);
-    border: 1px solid rgba(224, 92, 92, 0.3);
+    padding: 10px 14px;
+    background: rgba(192, 86, 90, 0.1);
+    border: 1px solid rgba(192, 86, 90, 0.25);
+    border-radius: 8px;
 }
 
+/* ── Submit button ── */
 .login-btn {
     width: 100%;
-    padding: 16px;
-    font-size: 0.9rem;
-    margin-top: 10px;
+    padding: 15px;
+    font-size: 0.75rem;
+    margin-top: 8px;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(184, 147, 90, 0.15);
+    border: 1px solid rgba(184, 147, 90, 0.35);
+    color: var(--gold-light);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--t-fast);
+}
+
+.login-btn:hover:not(:disabled) {
+    background: rgba(184, 147, 90, 0.28);
+    border-color: var(--gold);
+    color: var(--cream);
+    box-shadow: 0 4px 20px rgba(184, 147, 90, 0.2);
 }
 
 .login-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
 }

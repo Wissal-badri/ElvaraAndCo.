@@ -1,5 +1,9 @@
+/* ───────────────────────────────────────────
+   CHECKOUT PAGE
+   ─────────────────────────────────────────── */
 .checkout-page {
     min-height: 100vh;
+    background: var(--cream);
 }
 
 .checkout-layout {
@@ -10,17 +14,21 @@
 }
 
 .checkout-form-card {
-    background: #111;
-    border: 1px solid var(--color-charcoal-grey);
+    background: var(--warm-white);
+    border: 1px solid rgba(184, 147, 90, 0.12);
     padding: 40px;
+    box-shadow: var(--shadow-soft);
 }
 
 .checkout-form-card h2,
 .checkout-summary h2 {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--color-charcoal-grey);
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--cream-dark);
 }
 
 .checkout-form {
@@ -36,32 +44,41 @@
 }
 
 .form-group label {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #aaa;
+    letter-spacing: 0.18em;
+    color: var(--charcoal-soft);
+    font-family: var(--font-body);
+    font-weight: 500;
 }
 
 .form-group input,
 .form-group textarea {
-    background: #1a1a1a;
-    border: 1px solid var(--color-charcoal-grey);
-    color: var(--color-ivory-white);
-    padding: 14px 16px;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    color: var(--charcoal);
+    padding: 13px 16px;
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
     resize: vertical;
+    border-radius: 0;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: var(--color-royal-gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184, 147, 90, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--muted-light);
 }
 
 .field-error {
-    color: #e05c5c;
+    color: var(--error);
     font-size: 0.8rem;
 }
 
@@ -70,31 +87,33 @@
     align-items: center;
     gap: 12px;
     padding: 16px;
-    background: rgba(201, 166, 70, 0.08);
-    border: 1px solid rgba(201, 166, 70, 0.3);
-    font-size: 0.9rem;
+    background: rgba(184, 147, 90, 0.06);
+    border: 1px solid rgba(184, 147, 90, 0.22);
+    font-size: 0.88rem;
+    color: var(--charcoal-soft);
 }
 
 .payment-note strong {
-    color: var(--color-royal-gold);
+    color: var(--gold-dark);
 }
 
-/* Summary */
+/* ── Summary ── */
 .checkout-summary {
-    background: #111;
-    border: 1px solid var(--color-charcoal-grey);
+    background: var(--warm-white);
+    border: 1px solid rgba(184, 147, 90, 0.12);
     padding: 30px;
     position: sticky;
-    top: 100px;
+    top: 90px;
+    box-shadow: var(--shadow-soft);
 }
 
 .checkout-item {
     display: flex;
     justify-content: space-between;
     padding: 12px 0;
-    border-bottom: 1px solid #1a1a1a;
-    font-size: 0.9rem;
-    color: #aaa;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 0.88rem;
+    color: var(--muted);
 }
 
 .checkout-total {
@@ -102,12 +121,12 @@
     justify-content: space-between;
     padding-top: 20px;
     margin-top: 10px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    color: var(--color-ivory-white);
+    color: var(--charcoal);
 }
 
-/* Success */
+/* ── Success ── */
 .checkout-success {
     display: flex;
     align-items: center;
@@ -127,21 +146,24 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(201, 166, 70, 0.15);
-    border: 2px solid var(--color-royal-gold);
+    background: rgba(184, 147, 90, 0.1);
+    border: 2px solid var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: var(--color-royal-gold);
+    color: var(--gold);
 }
 
 .checkout-success h1 {
+    font-family: var(--font-heading);
     font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--charcoal);
 }
 
 .checkout-success p {
-    color: #aaa;
+    color: var(--muted);
     max-width: 400px;
 }
 

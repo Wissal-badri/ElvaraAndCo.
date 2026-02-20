@@ -1,95 +1,230 @@
-:root {
-  --color-royal-black: #0A0A0A;
-  --color-royal-gold: #C9A646;
-  --color-champagne-gold: #E5C97A;
-  --color-deep-burgundy: #5A0F1C;
-  --color-ivory-white: #F8F5F0;
-  --color-dark-emerald: #0F3D2E;
-  --color-charcoal-grey: #2E2E2E;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600;700&family=Italiana&display=swap');
 
-  --font-heading: 'Playfair Display', serif;
-  --font-subheading: 'Cormorant Garamond', serif;
-  --font-body: 'Montserrat', sans-serif;
+:root {
+  /* ── Palette ── */
+  --cream: #F9F6F1;
+  --cream-dark: #EDE8DF;
+  --warm-white: #FDFCFA;
+  --charcoal: #1C1C1E;
+  --charcoal-mid: #2D2D30;
+  --charcoal-soft: #3D3B38;
+  --muted: #8A8580;
+  --muted-light: #C0BAB2;
+  --gold: #B8935A;
+  --gold-light: #D4AA72;
+  --gold-dark: #8C6E3F;
+  --rose: #C9A69A;
+  --sage: #7A8C7E;
+  --error: #C0565A;
+  --success: #5A8C6E;
+
+  /* ── Typography ── */
+  --font-display: 'Italiana', serif;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+
+  /* ── Shadows ── */
+  --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 40px rgba(0, 0, 0, 0.10);
+  --shadow-deep: 0 8px 60px rgba(0, 0, 0, 0.18);
+
+  /* ── Transitions ── */
+  --t-fast: 0.2s ease;
+  --t-normal: 0.35s ease;
+  --t-slow: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-* {
+/* ───────────────────────────────────────────
+   RESET & BASE
+   ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-royal-black);
-  color: var(--color-ivory-white);
-  line-height: 1.6;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 108px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+body {
+  font-family: var(--font-body);
+  /* Dark background so the area behind the floating pill navbar is not white/cream */
+  background-color: var(--charcoal);
+  color: var(--charcoal);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* All page root wrappers get top padding to clear the floating navbar */
+.shop-page,
+.product-detail-page,
+.cart-page,
+.checkout-page,
+.login-page,
+.admin-dashboard {
+  padding-top: 92px;
+}
+
+h1,
+h2,
+h3 {
   font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--charcoal);
+  line-height: 1.15;
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-royal-gold);
+  color: var(--charcoal);
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  transition: color 0.3s ease;
+  transition: color var(--t-fast);
 }
 
 a:hover {
-  color: var(--color-champagne-gold);
+  color: var(--gold);
 }
 
 button {
   cursor: pointer;
   font-family: var(--font-body);
-  transition: all 0.3s ease;
+  transition: all var(--t-normal);
+  border: none;
 }
 
-/* Utilities */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+p {
+  color: var(--charcoal-soft);
+}
+
+/* ───────────────────────────────────────────
+   UTILITIES
+   ─────────────────────────────────────────── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 32px;
 }
 
 .text-gold {
-  color: var(--color-royal-gold);
+  color: var(--gold);
 }
 
-.bg-gold {
-  background-color: var(--color-royal-gold);
-  color: var(--color-royal-black);
+.text-muted {
+  color: var(--muted);
 }
 
-.btn-primary {
-  background-color: var(--color-royal-gold);
-  color: var(--color-royal-black);
-  padding: 12px 24px;
-  border: none;
+.text-center {
+  text-align: center;
+}
+
+.uppercase {
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* ───────────────────────────────────────────
+   EYEBROW LABEL
+   ─────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* ───────────────────────────────────────────
+   BUTTONS
+   ─────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--charcoal);
+  border-radius: 0;
+  transition: all var(--t-normal);
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-champagne-gold);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--cream);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184, 147, 90, 0.3);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--color-royal-gold);
-  border: 1px solid var(--color-royal-gold);
-  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--charcoal);
+  padding: 13px 30px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+  border: 1.5px solid var(--charcoal-mid);
+  border-radius: 0;
+  transition: all var(--t-normal);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-royal-gold);
-  color: var(--color-royal-black);
+  background: var(--charcoal);
+  color: var(--cream);
+  border-color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+/* ───────────────────────────────────────────
+   DIVIDERS & ORNAMENTS
+   ─────────────────────────────────────────── */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
 }

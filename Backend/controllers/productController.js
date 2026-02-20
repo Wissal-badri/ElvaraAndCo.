@@ -33,7 +33,7 @@ const createProduct = async (req, res) => {
         let imagePath = null;
 
         if (req.file) {
-            imagePath = `http://localhost:5000/uploads/${req.file.filename}`;
+            imagePath = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
         }
 
         if (!name || !price) return res.status(400).json({ message: 'Name and price are required.' });
